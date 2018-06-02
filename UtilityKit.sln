@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionKit", "ReflectionKit\ReflectionKit.csproj", "{F3A38F7B-859F-46EB-BCB4-A5E26BBFEAB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityKit", "UtilityKit\UtilityKit.csproj", "{F3A38F7B-859F-46EB-BCB4-A5E26BBFEAB7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Msi.UtilityKit", "Msi.UtilityKit\Msi.UtilityKit.csproj", "{66D57569-A611-47F1-9FAC-96B13C6BD0BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F3A38F7B-859F-46EB-BCB4-A5E26BBFEAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3A38F7B-859F-46EB-BCB4-A5E26BBFEAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3A38F7B-859F-46EB-BCB4-A5E26BBFEAB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D57569-A611-47F1-9FAC-96B13C6BD0BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D57569-A611-47F1-9FAC-96B13C6BD0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D57569-A611-47F1-9FAC-96B13C6BD0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D57569-A611-47F1-9FAC-96B13C6BD0BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
