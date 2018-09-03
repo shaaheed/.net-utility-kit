@@ -6,11 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Msi.UtilityKit\Msi.UtilityKit.csproj" />
+    <Compile Remove="Sms\**" />
+    <EmbeddedResource Remove="Sms\**" />
+    <None Remove="Sms\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Sms\" />
+    <ProjectReference Include="..\Msi.UtilityKit\Msi.UtilityKit.csproj" />
   </ItemGroup>
 
 </Project>
