@@ -8,7 +8,7 @@ namespace Msi.UtilityKit.Security
     public static class SecurityUtilities
     {
 
-        private static StaticAesOptions _staticAesOptions;
+        private static AesOptions _aesOptions = new AesOptions();
         private static ICryptoTransform _encryptor;
         private static ICryptoTransform _decryptor;
         private static UTF8Encoding _encoder;
@@ -18,26 +18,21 @@ namespace Msi.UtilityKit.Security
 
         }
 
-        public static void ConfigureStaticAesOptions(Action<StaticAesOptions> aesOptions)
+        public static void ConfigureOptions(Action<AesOptions> aesOptions)
         {
-            if (_staticAesOptions == null)
+            aesOptions?.Invoke(_aesOptions);
+
+            if (_aesOptions == null)
             {
-                _staticAesOptions = new StaticAesOptions();
+                throw new NullReferenceException("AES options is null. Please set the AES options");
             }
 
-            aesOptions.Invoke(_staticAesOptions);
-
-            if (_staticAesOptions == null)
-            {
-                throw new NullReferenceException("Static AES options is null. Please set the static AES options");
-            }
-
-            if (string.IsNullOrEmpty(_staticAesOptions.Key))
+            if (string.IsNullOrEmpty(_aesOptions.Key))
             {
                 throw new ArgumentNullException("AES key is null or empty");
             }
 
-            if (string.IsNullOrEmpty(_staticAesOptions.Secret))
+            if (string.IsNullOrEmpty(_aesOptions.Secret))
             {
                 throw new ArgumentNullException("AES secret is null or empty");
             }
@@ -47,8 +42,8 @@ namespace Msi.UtilityKit.Security
                 _encoder = new UTF8Encoding();
             }
 
-            var _key = _encoder.GetBytes(_staticAesOptions.Key);
-            var _secret = _encoder.GetBytes(_staticAesOptions.Secret);
+            var _key = _encoder.GetBytes(_aesOptions.Key);
+            var _secret = _encoder.GetBytes(_aesOptions.Secret);
 
             if (_encryptor == null || _decryptor == null)
             {

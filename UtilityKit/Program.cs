@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Msi.UtilityKit.Security;
-using Msi.UtilityKit.Sms;
-using UtilityKit.Sms;
+using Msi.UtilityKit.Services.Sms;
+using Msi.UtilityKit.Services.Sms.Twilio;
 
 namespace UtilityKit
 {
@@ -15,16 +15,19 @@ namespace UtilityKit
 
             #region Twilio Sms
 
-            SmsUtilities.AddService("twilio", new TwilioSmsService("+10000000000", "sid", "token"));
+            SmsUtilities.ConfigureService(container =>
+            {
+                container.Add("twilio", new TwilioSmsService("+10000000000", "sid", "token"));
+            });
 
             var text = "Test Sms!";
-            SmsUtilities.SendSms(text, "+8801815000000");
+            SmsUtilities.SendSms(text, "+8801815000000", "t");
 
             #endregion
 
             #region Encription/Decryption
 
-            SecurityUtilities.ConfigureStaticAesOptions(x =>
+            SecurityUtilities.ConfigureOptions(x =>
             {
                 x.Key = "";
                 x.Secret = "";
