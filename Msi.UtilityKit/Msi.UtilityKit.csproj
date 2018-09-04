@@ -3,13 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>false</SignAssembly>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Sahidul Islam</Authors>
+    <Company>Msi</Company>
+    <Product />
+    <Description>.net standard 2.0 reusable components.</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Crypto\**" />
-    <EmbeddedResource Remove="Crypto\**" />
-    <None Remove="Crypto\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
