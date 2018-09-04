@@ -42,7 +42,7 @@ namespace Msi.UtilityKit
             return defaultValue;
         }
 
-    /// <summary>
+        /// <summary>
         /// Sets the value to an object by the property name.
         /// Property name can be dotted. eg. "Nested.Property"
         /// </summary>
@@ -86,7 +86,7 @@ namespace Msi.UtilityKit
             return null;
         }
 
-    /// <summary>
+        /// <summary>
         /// Invoke the method of an object by the method name. Name can be dotted.
         /// </summary>
         public static object InvokeMethod(this object source, string dottedMethodName, params object[] parameters)
@@ -106,8 +106,20 @@ namespace Msi.UtilityKit
 
         public static object InvokeGenericMethod<T>(this object source, string methodName, params object[] parameters)
         {
+            return InvokeGenericMethod(source, methodName, typeof(T), parameters);
+        }
+
+        public static object InvokeGenericMethod(this object source, string methodName, Type typeArgument, params object[] parameters)
+        {
             var method = source.GetType().GetMethod(methodName);
-            var genericMethod = method.MakeGenericMethod(typeof(T));
+            var genericMethod = method.MakeGenericMethod(typeArgument);
+            return genericMethod.Invoke(source, parameters);
+        }
+
+        public static object InvokeGenericMethod(this object source, string methodName, Type[] typeArguments, params object[] parameters)
+        {
+            var method = source.GetType().GetMethod(methodName);
+            var genericMethod = method.MakeGenericMethod(typeArguments);
             return genericMethod.Invoke(source, parameters);
         }
 
