@@ -18,10 +18,25 @@ namespace Msi.UtilityKit.Services.Sms
             SendSms(text, to, service);
         }
 
+        /// <summary>
+        /// if service is null, it will try to send sms by default sms service provider.
+        /// </summary>
         public static void SendSms(string text, string to, string service = null)
         {
-            var _service = _services.Get(service ?? string.Empty) ?? _services.GetDefault();
-            _service.Send(text, to);
+            ISmsService _smsService = null;
+            if (service == null)
+            {
+                _smsService = _services.GetDefault();
+            }
+            else
+            {
+                _smsService = _services.Get(service);
+                if(_smsService == null)
+                {
+                    throw new NullReferenceException($"Could not find the {service} sms service.");
+                }
+            }
+            _smsService?.Send(text, to);
         }
 
         public static void SendSms(string text, IEnumerable<string> tos, string service)

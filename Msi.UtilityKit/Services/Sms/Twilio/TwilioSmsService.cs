@@ -22,17 +22,19 @@ namespace Msi.UtilityKit.Services.Sms.Twilio
 
         public void Send(string text, string to)
         {
-            HttpClient httpClient = new HttpClient();
-            var credential = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_sid}:{_token}"));
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credential);
-            var content = new FormUrlEncodedContent(new Dictionary<string, string>
+            using (HttpClient httpClient = new HttpClient())
             {
-                ["To"] = to,
-                ["From"] = _from,
-                ["Body"] = text
-            });
-            var url = $"{BASE_URL}/{_sid}/Messages";
-            var response = httpClient.PostAsync(url, content).Result;
+                var credential = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_sid}:{_token}"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credential);
+                var content = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    ["To"] = to,
+                    ["From"] = _from,
+                    ["Body"] = text
+                });
+                var url = $"{BASE_URL}/{_sid}/Messages";
+                httpClient.PostAsync(url, content);
+            }
         }
     }
 }
