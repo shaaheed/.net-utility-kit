@@ -94,7 +94,7 @@ namespace Msi.UtilityKit
             (object _source, MethodInfo method) = GetMethodAndSource(source, dottedMethodName);
             if (_source != null && method != null)
             {
-                method.Invoke(_source, parameters);
+                return method.Invoke(_source, parameters);
             }
             return null;
         }
