@@ -5,6 +5,7 @@ using System.Linq;
 using Msi.UtilityKit.Security;
 using Msi.UtilityKit.Services.Sms;
 using Msi.UtilityKit.Services.Sms.Twilio;
+using Msi.UtilityKit;
 
 namespace UtilityKit
 {
@@ -12,6 +13,12 @@ namespace UtilityKit
     {
         static void Main(string[] args)
         {
+
+            #region Number to Words
+
+            var numberToWords = NumberUtilities.ToWords(1234);
+
+            #endregion
 
             #region Twilio Sms
 
