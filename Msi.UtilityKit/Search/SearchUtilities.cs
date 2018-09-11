@@ -38,6 +38,11 @@ namespace Msi.UtilityKit.Search
 
                     // expression -> name eq shahid
                     var tokens = _searchQuery[i].Split(' ');
+                    if(tokens.Length > 3)
+                    {
+                        // remove null or empty items
+                        tokens = tokens.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+                    }
                     if (tokens.Length == 3)
                     {
                         string @operator = tokens[1];
